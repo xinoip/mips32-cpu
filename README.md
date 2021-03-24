@@ -16,24 +16,28 @@ Design uses only Structural Verilog. Behavioral Verilog was not used for educati
 
 ## Instructions
 
-These are the supported instructions of the CPU.
+These are the supported instructions of the CPU. Instructions follows the MIPS standart. There are also new instructions. Those instructions and with letter 'n'.
 
 | Name | Instruction | RTL |
 |------|-------------|-----|
 | Load Upper Imm. | lui |  R[rt] = {imm, 16’b0} |
-| Store Word | sw | R |
-| Load Word | lw | R |
-| Jump | j | R |
-| Jump And Link | jal | R |
-| Jump Register | jr | R |
-| Branch On Equal | jr | R |
-| Branch On Not Equal | bne | R |
-| Or Imm. | ori | R |
-| New Add | addn | R |
-| New Sub | subn | R |
-| New Or | orn | R |
-| New Xor | xorn | R |
-| New And | andn | R |
+| Store Word | sw | M[R[rs]+SignExtImm] = R[rt] |
+| Load Word | lw | R[rt] = M[R[rs]+SignExtImm] |
+| Jump | j | PC=JumpAddr |
+| Jump And Link | jal | R[31]=PC+8;PC=JumpAddr |
+| Jump Register | jr |  PC=R[rs] |
+| Branch On Equal | jr | if(R[rs]==R[rt])<br />&nbsp;&nbsp;&nbsp;&nbsp;PC=PC+4+BranchAddr |
+| Branch On Not Equal | bne | if(R[rs]!=R[rt])<br />&nbsp;&nbsp;&nbsp;&nbsp;PC=PC+4+BranchAddr |
+| Or Imm. | ori | R[rt] = R[rs] or ZeroExtImm |
+| New Add | addn | R[rs] = R[rs] + R[rt];<br />if (R[rs] + R[rt] == 0)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 1;<br />else if (R[rs] + R[rt] == 1)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 2;<br />else<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 3; |
+| New Sub | subn | R[rs] = R[rs] - R[rt];<br />if (R[rs] - R[rt] == 0)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 1;<br />else if (R[rs] - R[rt] == 1)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 2;<br />else<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 3; |
+| New Or | orn | R[rs] = R[rs] or R[rt];<br />if (R[rs] or R[rt] == 0)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 1;<br />else if (R[rs] or R[rt] == 1)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 2;<br />else<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 3; |
+| New Xor | xorn | R[rs] = R[rs] xor R[rt];<br />if (R[rs] xor R[rt] == 0)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 1;<br />else if (R[rs] xor R[rt] == 1)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 2;<br />else<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 3; |
+| New And | andn | R[rs] = R[rs] and R[rt];<br />if (R[rs] and R[rt] == 0)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 1;<br />else if (R[rs] and R[rt] == 1)<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 2;<br />else<br />&nbsp;&nbsp;&nbsp;&nbsp;R[rd] = 3; |
+
+## Install Quartus Project
+
+You can install the project as a qar file ![here](https://github.com/xinoip/mips32-cpu/releases/tag/1.0)
 
 ## Example Program
 
