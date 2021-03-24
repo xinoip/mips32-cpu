@@ -37,7 +37,7 @@ These are the supported instructions of the CPU. Instructions follows the MIPS s
 
 ## Install Quartus Project
 
-You can install the project as a qar file ![here](https://github.com/xinoip/mips32-cpu/releases/tag/1.0)
+You can install the project as a qar file [here](https://github.com/xinoip/mips32-cpu/releases/tag/1.0)
 
 ## Example Program
 
