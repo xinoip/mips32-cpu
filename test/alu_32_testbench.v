@@ -1,0 +1,130 @@
+`define DELAY 20
+module alu_32_testbench();
+	reg [31:0] a, b;
+    reg [2:0] alu_op;
+	reg [31:0] expected_result, expected_n;
+    reg expected_zero;
+    wire zero;
+    wire [31:0] result, n;
+	wire pass, eq1, eq2, eq3;
+	
+    alu_32 test_alu32(result, zero, n, a, b, alu_op);
+	equal_32 equal_result(eq1, expected_result, result);
+    xnor equal_zero(eq2, expected_zero, zero);
+    equal_32 equal_n(eq3, expected_n, n);
+    and is_pass(pass, eq1, eq2, eq3);
+	
+initial begin
+// AND tests, start
+    alu_op = 3'b000;
+	a = 32'b00000000000000000000000000000000;
+    b = 32'b00000000000000000000000000000000;
+    expected_result = 32'b00000000000000000000000000000000;
+    expected_zero = 1'b1;
+    expected_n = 32'b00000000000000000000000000000001;
+#`DELAY;
+    a = 32'b11111111111111111111111111111111;
+    b = 32'b11111111111111111111111111111111;
+    expected_result = 32'b11111111111111111111111111111111;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000010;
+#`DELAY;
+    a = 32'b00000000000000000000000000001100;
+    b = 32'b00000000000000000000000000001010;
+    expected_result = 32'b00000000000000000000000000001000;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000011;
+#`DELAY;
+// AND tests, end.
+
+// OR tests, start
+    alu_op = 3'b001;
+	a = 32'b00000000000000000000000000000000;
+    b = 32'b00000000000000000000000000000000;
+    expected_result = 32'b00000000000000000000000000000000;
+    expected_zero = 1'b1;
+    expected_n = 32'b00000000000000000000000000000001;
+#`DELAY;
+    a = 32'b11111111111111111111111111111111;
+    b = 32'b11111111111111111111111111111111;
+    expected_result = 32'b11111111111111111111111111111111;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000010;
+#`DELAY;
+    a = 32'b00000000000000000000000000001100;
+    b = 32'b00000000000000000000000000001010;
+    expected_result = 32'b00000000000000000000000000001110;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000011;
+#`DELAY;
+// OR tests, end.
+
+// ADD tests, start
+    alu_op = 3'b010;
+	a = 32'b00000000000000000000000000000000;
+    b = 32'b00000000000000000000000000000000;
+    expected_result = 32'b00000000000000000000000000000000;
+    expected_zero = 1'b1;
+    expected_n = 32'b00000000000000000000000000000001;
+#`DELAY;
+    a = 32'b00000000000000000000000000001100;
+    b = 32'b00000000000000000000000000001010;
+    expected_result = 32'b00000000000000000000000000010110;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000011;
+#`DELAY;
+// ADD tests, end.
+
+// SUBSTRACT tests, start
+    alu_op = 3'b110;
+	a = 32'b11111111111111111111111111111111;
+    b = 32'b11111111111111111111111111111111;
+    expected_result = 32'b00000000000000000000000000000000;
+    expected_zero = 1'b1;
+    expected_n = 32'b00000000000000000000000000000001;
+#`DELAY;
+    a = 32'b00000000000000000000000000001100;
+    b = 32'b00000000000000000000000000001010;
+    expected_result = 32'b00000000000000000000000000000010;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000011;
+#`DELAY;
+    a = 32'b00000000000000000000000000001010;
+    b = 32'b00000000000000000000000000001100;
+    expected_result = 32'b11111111111111111111111111111110;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000010;
+#`DELAY;
+// SUBSTRACT tests, end.
+
+// XOR tests, start
+    alu_op = 3'b011;
+	a = 32'b00000000000000000000000000000000;
+    b = 32'b00000000000000000000000000000000;
+    expected_result = 32'b00000000000000000000000000000000;
+    expected_zero = 1'b1;
+    expected_n = 32'b00000000000000000000000000000001;
+#`DELAY;
+    a = 32'b11111111111111111111111111111111;
+    b = 32'b11111111111111111111111111111111;
+    expected_result = 32'b00000000000000000000000000000000;
+    expected_zero = 1'b1;
+    expected_n = 32'b00000000000000000000000000000001;
+#`DELAY;
+    a = 32'b00000000000000000000000000001100;
+    b = 32'b00000000000000000000000000001010;
+    expected_result = 32'b00000000000000000000000000000110;
+    expected_zero = 1'b0;
+    expected_n = 32'b00000000000000000000000000000011;
+#`DELAY;
+// XOR tests, end.
+
+end
+
+initial begin
+	$monitor("time=%2d, pass=%1b, a=%32b, b=%32b, alu_op=%2b, result=%32b, zero=%1b, n=%2b",
+             $time, pass, a, b, alu_op, result, zero, n[1:0]);
+end
+
+endmodule
+	

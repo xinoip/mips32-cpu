@@ -1,0 +1,37 @@
+module left_shift_2 (result, a);
+    input [31:0] a;
+    output [31:0] result;
+
+    and m0(result[0], 1'b0, 1'b0);
+    and m1(result[1], 1'b0, 1'b0);
+    and m2(result[2], a[0],  a[0]);
+    and m3(result[3], a[1],  a[1]);
+    and m4(result[4], a[2],  a[2]);
+    and m5(result[5], a[3],  a[3]);
+    and m6(result[6], a[4],  a[4]);
+    and m7(result[7], a[5],  a[5]);
+    and m8(result[8], a[6],  a[6]);
+    and m9(result[9], a[7],  a[7]);
+    and m10(result[10], a[8],  a[8]);
+    and m11(result[11], a[9],  a[9]);
+    and m12(result[12], a[10],  a[10]);
+    and m13(result[13], a[11],  a[11]);
+    and m14(result[14], a[12],  a[12]);
+    and m15(result[15], a[13],  a[13]);
+    and m16(result[16], a[14],  a[14]);
+    and m17(result[17], a[15],  a[15]);
+    and m18(result[18], a[16],  a[16]);
+    and m19(result[19], a[17],  a[17]);
+    and m20(result[20], a[18],  a[18]);
+    and m21(result[21], a[19],  a[19]);
+    and m22(result[22], a[20],  a[20]);
+    and m23(result[23], a[21],  a[21]);
+    and m24(result[24], a[22],  a[22]);
+    and m25(result[25], a[23],  a[23]);
+    and m26(result[26], a[24],  a[24]);
+    and m27(result[27], a[25],  a[25]);
+    and m28(result[28], a[26],  a[26]);
+    and m29(result[29], a[27],  a[27]);
+    and m30(result[30], a[28],  a[28]);
+    and m31(result[31], a[29],  a[29]);
+endmodule

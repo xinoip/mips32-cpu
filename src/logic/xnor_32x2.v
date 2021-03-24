@@ -1,0 +1,37 @@
+module xnor_32x2 (result, a, b);
+    input [31:0] a, b;
+    output [31:0] result;
+    
+    xnor m0(result[0], a[0], b[0]);
+    xnor m1(result[1], a[1], b[1]);
+    xnor m2(result[2], a[2], b[2]);
+    xnor m3(result[3], a[3], b[3]);
+    xnor m4(result[4], a[4], b[4]);
+    xnor m5(result[5], a[5], b[5]);
+    xnor m6(result[6], a[6], b[6]);
+    xnor m7(result[7], a[7], b[7]);
+    xnor m8(result[8], a[8], b[8]);
+    xnor m9(result[9], a[9], b[9]);
+    xnor m10(result[10], a[10], b[10]);
+    xnor m11(result[11], a[11], b[11]);
+    xnor m12(result[12], a[12], b[12]);
+    xnor m13(result[13], a[13], b[13]);
+    xnor m14(result[14], a[14], b[14]);
+    xnor m15(result[15], a[15], b[15]);
+    xnor m16(result[16], a[16], b[16]);
+    xnor m17(result[17], a[17], b[17]);
+    xnor m18(result[18], a[18], b[18]);
+    xnor m19(result[19], a[19], b[19]);
+    xnor m20(result[20], a[20], b[20]);
+    xnor m21(result[21], a[21], b[21]);
+    xnor m22(result[22], a[22], b[22]);
+    xnor m23(result[23], a[23], b[23]);
+    xnor m24(result[24], a[24], b[24]);
+    xnor m25(result[25], a[25], b[25]);
+    xnor m26(result[26], a[26], b[26]);
+    xnor m27(result[27], a[27], b[27]);
+    xnor m28(result[28], a[28], b[28]);
+    xnor m29(result[29], a[29], b[29]);
+    xnor m30(result[30], a[30], b[30]);
+    xnor m31(result[31], a[31], b[31]);
+endmodule
